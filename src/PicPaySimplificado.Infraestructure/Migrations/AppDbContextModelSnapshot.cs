@@ -22,37 +22,88 @@ namespace PicPaySimplificado.Infraestructure.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            modelBuilder.Entity("PicPaySimplificado.Core.Entities.Carteira", b =>
+            modelBuilder.Entity("PicPaySimplificado.Core.Entities.Transaction", b =>
                 {
                     b.Property<Guid>("Id")
                         .HasColumnType("uuid");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("timestamp(6)");
+
+                    b.Property<Guid>("PayeerId")
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("ReciverId")
+                        .HasColumnType("uuid");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("integer");
+
+                    b.Property<decimal>("Value")
+                        .HasColumnType("numeric");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("PayeerId");
+
+                    b.HasIndex("ReciverId");
+
+                    b.ToTable("Transactions");
+                });
+
+            modelBuilder.Entity("PicPaySimplificado.Core.Entities.Wallet", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .HasColumnType("uuid");
+
+                    b.Property<decimal>("Balance")
+                        .HasColumnType("numeric");
 
                     b.Property<string>("Cpf")
                         .IsRequired()
                         .HasColumnType("text");
 
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("timestamp(6)");
+
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<string>("Nome")
+                    b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<decimal>("Saldo")
-                        .HasColumnType("numeric");
-
-                    b.Property<string>("Senha")
+                    b.Property<string>("Password")
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<string>("Tipo")
+                    b.Property<string>("TypeWalltet")
                         .IsRequired()
                         .HasColumnType("text");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Carteiras");
+                    b.ToTable("Wallet");
+                });
+
+            modelBuilder.Entity("PicPaySimplificado.Core.Entities.Transaction", b =>
+                {
+                    b.HasOne("PicPaySimplificado.Core.Entities.Wallet", "Payeer")
+                        .WithMany()
+                        .HasForeignKey("PayeerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("PicPaySimplificado.Core.Entities.Wallet", "Reciver")
+                        .WithMany()
+                        .HasForeignKey("ReciverId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Payeer");
+
+                    b.Navigation("Reciver");
                 });
 #pragma warning restore 612, 618
         }

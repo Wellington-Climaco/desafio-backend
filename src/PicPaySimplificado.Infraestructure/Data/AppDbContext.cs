@@ -11,7 +11,8 @@ namespace PicPaySimplificado.Infraestructure.Data
             
         }
 
-        public DbSet<Carteira> Carteiras { get; set; }
+        public DbSet<Wallet> Wallet { get; set; }
+        public DbSet<Transaction> Transactions { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

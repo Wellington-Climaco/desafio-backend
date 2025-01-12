@@ -15,7 +15,7 @@ namespace PicPaySimplificado.Core.Entities
             Cpf = cpf;
             Email = email;
             Password = senha;
-            TypeWalltet = tipoCarteira;
+            TypeWallet = tipoCarteira;
         }
 
         public string Name { get; private set; }
@@ -23,7 +23,7 @@ namespace PicPaySimplificado.Core.Entities
         public string Email { get; private set; }
         public string Password { get; private set; }
         public decimal Balance { get; private set; } = 0;
-        public string TypeWalltet { get; private set; }
+        public string TypeWallet { get; private set; }
 
         public decimal SubtractBalance(decimal amount)
         {
@@ -33,6 +33,11 @@ namespace PicPaySimplificado.Core.Entities
         public void AddBalance(decimal amount)
         {
             Balance += amount;
+        }
+
+        public void RollbackBalance(decimal amount)
+        {
+            Balance = amount;
         }
     }
 }

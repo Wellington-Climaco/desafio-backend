@@ -11,8 +11,8 @@ public static class TransferenceResponseExtensions
     public static TransferenceResponse ToTransferenceResponse(this Transference transference)
     {
         var response =new TransferenceResponse(transference.Value,transference.Status,
-            new WalletResponse(transference.Payeer.Name,transference.Payeer.Email,transference.Payeer.TypeWalltet),
-            new WalletResponse(transference.Reciver.Name,transference.Reciver.Email,transference.Reciver.TypeWalltet));
+            new WalletResponse(transference.Payeer.Name,transference.Payeer.Email,transference.Payeer.TypeWallet),
+            new WalletResponse(transference.Reciver.Name,transference.Reciver.Email,transference.Reciver.TypeWallet));
         
         return response;
     }

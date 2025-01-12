@@ -24,6 +24,12 @@ namespace PicPaySimplificado.Infraestructure.Repository
             return await _dbcontext.Wallet.FirstOrDefaultAsync(x=>x.Cpf == cpfcnpj);
         }
 
+        public async Task<Wallet?> GetWalletById(Guid walletId)
+        {
+            return await _dbcontext.Wallet.FirstOrDefaultAsync((x=>x.Id == walletId));
+        }
+
+
         public async Task<Wallet?> FindByEmail(string email)
         {
             return await _dbcontext.Wallet.FirstOrDefaultAsync(x => x.Email == email);

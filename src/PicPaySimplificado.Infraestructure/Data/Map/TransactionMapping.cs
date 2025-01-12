@@ -5,11 +5,13 @@ using PicPaySimplificado.Infraestructure.Extensions;
 
 namespace PicPaySimplificado.Infraestructure.Data.Map
 {
-    internal class TransactionMapping : IEntityTypeConfiguration<Transaction>
+    internal class TransactionMapping : IEntityTypeConfiguration<Transference>
     {
-        public void Configure(EntityTypeBuilder<Transaction> builder)
+        public void Configure(EntityTypeBuilder<Transference> builder)
         {
             builder.MappingBase();
+
+            builder.Property(x => x.Status).HasColumnType("text");
         }
     }
 }

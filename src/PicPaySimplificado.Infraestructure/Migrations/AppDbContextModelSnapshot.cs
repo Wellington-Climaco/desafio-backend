@@ -22,7 +22,7 @@ namespace PicPaySimplificado.Infraestructure.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            modelBuilder.Entity("PicPaySimplificado.Core.Entities.Transaction", b =>
+            modelBuilder.Entity("PicPaySimplificado.Core.Entities.Transference", b =>
                 {
                     b.Property<Guid>("Id")
                         .HasColumnType("uuid");
@@ -36,8 +36,9 @@ namespace PicPaySimplificado.Infraestructure.Migrations
                     b.Property<Guid>("ReciverId")
                         .HasColumnType("uuid");
 
-                    b.Property<int>("Status")
-                        .HasColumnType("integer");
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasColumnType("text");
 
                     b.Property<decimal>("Value")
                         .HasColumnType("numeric");
@@ -48,7 +49,7 @@ namespace PicPaySimplificado.Infraestructure.Migrations
 
                     b.HasIndex("ReciverId");
 
-                    b.ToTable("Transactions");
+                    b.ToTable("Transferences");
                 });
 
             modelBuilder.Entity("PicPaySimplificado.Core.Entities.Wallet", b =>
@@ -87,7 +88,7 @@ namespace PicPaySimplificado.Infraestructure.Migrations
                     b.ToTable("Wallet");
                 });
 
-            modelBuilder.Entity("PicPaySimplificado.Core.Entities.Transaction", b =>
+            modelBuilder.Entity("PicPaySimplificado.Core.Entities.Transference", b =>
                 {
                     b.HasOne("PicPaySimplificado.Core.Entities.Wallet", "Payeer")
                         .WithMany()

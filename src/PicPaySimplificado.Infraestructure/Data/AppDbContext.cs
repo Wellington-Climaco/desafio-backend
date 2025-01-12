@@ -12,7 +12,7 @@ namespace PicPaySimplificado.Infraestructure.Data
         }
 
         public DbSet<Wallet> Wallet { get; set; }
-        public DbSet<Transaction> Transactions { get; set; }
+        public DbSet<Transference> Transferences { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

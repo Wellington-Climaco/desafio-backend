@@ -79,7 +79,7 @@ namespace PicPaySimplificado.Infraestructure.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<string>("TypeWalltet")
+                    b.Property<string>("TypeWallet")
                         .IsRequired()
                         .HasColumnType("text");
 

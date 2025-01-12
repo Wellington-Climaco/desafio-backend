@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore.Storage;
 using PicPaySimplificado.Core.Entities;
 using PicPaySimplificado.Core.Interface;
 using PicPaySimplificado.Infraestructure.Data;

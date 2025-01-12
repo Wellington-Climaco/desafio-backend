@@ -3,6 +3,7 @@
     public enum StatusTransaction
     {
         Success,
-        Fail
+        Fail,
+        Processing,
     }
 }

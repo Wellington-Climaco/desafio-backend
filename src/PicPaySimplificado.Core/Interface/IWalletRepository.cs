@@ -7,5 +7,6 @@ namespace PicPaySimplificado.Core.Interface
         Task<Wallet> CreateWallet(Wallet wallet);
         Task<Wallet?> FindByEmail(string email);
         Task<Wallet?> FindByDocument(string cpfcnpj);
+        Task<Wallet?> GetWalletById(Guid walletId);
     }
 }

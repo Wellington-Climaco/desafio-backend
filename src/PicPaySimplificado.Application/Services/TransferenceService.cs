@@ -25,10 +25,19 @@ internal class TransferenceService : ITransferenceService
     public async Task<Result<TransferenceResponse>> ProcessTransaction(TransferenceRequest request)
     {
         var payer = await _walletRepository.GetWalletById(Guid.Parse(request.Payer));
+        
+        if(payer == null)
+            return Result.Fail("Data for payer are invalid.");
+
+        if (payer.TypeWallet.Equals(TypeWallet.Store.ToString(),StringComparison.InvariantCultureIgnoreCase))
+            return Result.Fail("Store wallet cannot do transference, just recive");
+
         var reciver = await _walletRepository.GetWalletById(Guid.Parse(request.Payee));
         
-        if(payer == null || reciver == null)
-            return Result.Fail("Data for payer and/or payee are invalid.");
+        if(reciver == null)
+            return Result.Fail("Data for payee are invalid.");
+        
+        
         
         var balanceIsEnough =  CheckBalance(request,payer);
 
@@ -41,7 +50,12 @@ internal class TransferenceService : ITransferenceService
         var authorization = await VerifyAuthorizator();
 
         if (authorization.IsFailed)
+        {
+            transfer.ChangeStatus(StatusTransaction.Unauthorized);
+            await _transferenceRepository.UpdateTransaction(transfer);
             return Result.Fail("Transfer unauthorized.");
+        }
+            
 
         var transferProcess = await TransferFunds(transfer);
 
@@ -61,18 +75,26 @@ internal class TransferenceService : ITransferenceService
 
     public async Task<Result<Transference>> TransferFunds(Transference transfer)
     {
+        var payeroriginalBalance = transfer.Payeer.Balance;
+        var reciverOriginalBalance = transfer.Reciver.Balance;
         try
         {
+            
             transfer.Payeer.SubtractBalance(transfer.Value);
             transfer.Reciver.AddBalance(transfer.Value);
             transfer.ChangeStatus(StatusTransaction.Success);
-        
+
             await _transferenceRepository.UpdateTransaction(transfer);
         
             return Result.Ok(transfer);
         }
         catch (Exception e)
         {
+            transfer.Payeer.RollbackBalance(payeroriginalBalance);
+            transfer.Reciver.RollbackBalance(reciverOriginalBalance);
+            
+            transfer.ChangeStatus(StatusTransaction.Fail);
+            await _transferenceRepository.UpdateTransaction(transfer);
             return Result.Fail(e.Message);
         }
         

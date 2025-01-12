@@ -25,6 +25,7 @@ namespace PicPaySimplificado.Infraestructure.Extensions
         public static void DependencyInjection(IServiceCollection services)
         {
             services.AddScoped<IWalletRepository,WalletRepository>();
+            services.AddScoped<ITransferenceRepository, TransferenceRepository>();
         }
     }
 }

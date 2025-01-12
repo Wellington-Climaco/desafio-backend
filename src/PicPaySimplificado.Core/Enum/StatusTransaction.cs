@@ -5,5 +5,6 @@
         Success,
         Fail,
         Processing,
+        Unauthorized,
     }
 }

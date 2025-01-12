@@ -24,5 +24,15 @@ namespace PicPaySimplificado.Core.Entities
         public string Password { get; private set; }
         public decimal Balance { get; private set; } = 0;
         public string TypeWalltet { get; private set; }
+
+        public decimal SubtractBalance(decimal amount)
+        {
+            return Balance -= amount;
+        }
+
+        public void AddBalance(decimal amount)
+        {
+            Balance += amount;
+        }
     }
 }

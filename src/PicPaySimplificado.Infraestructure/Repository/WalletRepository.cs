@@ -29,6 +29,12 @@ namespace PicPaySimplificado.Infraestructure.Repository
             return await _dbcontext.Wallet.FirstOrDefaultAsync((x=>x.Id == walletId));
         }
 
+        public async Task AddFunds(Wallet wallet)
+        {
+             _dbcontext.Wallet.Update(wallet);
+             await _dbcontext.SaveChangesAsync();
+        }
+
 
         public async Task<Wallet?> FindByEmail(string email)
         {

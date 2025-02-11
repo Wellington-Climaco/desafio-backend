@@ -33,5 +33,16 @@ namespace PicPaySimplificado.Api.Controllers
 
             return Ok("Wallet created with success");
         }
+        
+        [HttpPatch("deposit")]
+        public async Task<IActionResult> DepositBalance([FromBody] DepositBalanceRequest request)
+        {
+            var result = await _walletService.DepositFunds(request);
+            
+            if(!result.IsSuccess)
+                return BadRequest(result.Errors);
+
+            return Ok(result.Value);
+        }
     }
 }

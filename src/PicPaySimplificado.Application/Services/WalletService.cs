@@ -32,5 +32,25 @@ namespace PicPaySimplificado.Application.Services
 
             return Result.Ok();
         }
+
+        public async Task<Result<string>> DepositFunds(DepositBalanceRequest request)
+        {
+            if (request.Amount <= 0)
+                return Result.Fail("amount must be greater than 0");
+            
+            if(String.IsNullOrWhiteSpace(request.Document))
+                return Result.Fail("document cannot be null or empty string");
+            
+            var walletEntity = await _repository.FindByDocument(request.Document);
+
+            if (walletEntity is null)
+                return Result.Fail("Wallet not found");
+            
+            walletEntity.AddBalance(request.Amount);
+            
+            _repository.AddFunds(walletEntity);
+            
+            return Result.Ok("Value was deposited");
+        }
     }
 }

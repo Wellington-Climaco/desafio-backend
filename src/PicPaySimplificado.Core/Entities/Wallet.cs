@@ -27,6 +27,9 @@ namespace PicPaySimplificado.Core.Entities
 
         public decimal SubtractBalance(decimal amount)
         {
+            if(Balance < amount)
+                throw new ApplicationException("Balance not is enough");
+            
             return Balance -= amount;
         }
 

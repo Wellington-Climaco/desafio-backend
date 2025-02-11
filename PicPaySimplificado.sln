@@ -3,13 +3,19 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.10.35013.160
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PicPaySimplificado.Api", "src/PicPaySimplificado.Api\PicPaySimplificado.Api.csproj", "{AB88DB4C-02A4-4BEB-BAFD-C6FF1D677A40}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PicPaySimplificado.Api", "src\PicPaySimplificado.Api\PicPaySimplificado.Api.csproj", "{AB88DB4C-02A4-4BEB-BAFD-C6FF1D677A40}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PicPaySimplificado.Core", "src/PicPaySimplificado.Core\PicPaySimplificado.Core.csproj", "{E7333F07-7E11-48BC-ADE9-B8503ABCEED4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PicPaySimplificado.Core", "src\PicPaySimplificado.Core\PicPaySimplificado.Core.csproj", "{E7333F07-7E11-48BC-ADE9-B8503ABCEED4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PicPaySimplificado.Infraestructure", "src/PicPaySimplificado.Infraestructure\PicPaySimplificado.Infraestructure.csproj", "{295C08E3-0B92-4819-A20A-6B19FF720166}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PicPaySimplificado.Infraestructure", "src\PicPaySimplificado.Infraestructure\PicPaySimplificado.Infraestructure.csproj", "{295C08E3-0B92-4819-A20A-6B19FF720166}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PicPaySimplificado.Application", "src/PicPaySimplificado.Application\PicPaySimplificado.Application.csproj", "{587F2D0C-4C77-414D-8A75-E485B09796F7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PicPaySimplificado.Application", "src\PicPaySimplificado.Application\PicPaySimplificado.Application.csproj", "{587F2D0C-4C77-414D-8A75-E485B09796F7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PicPaySimplificado.Tests", "tests\PicPaySimplificado.Tests\PicPaySimplificado.Tests.csproj", "{82CD9C5E-5F1F-4056-A7EC-CAB24FD21FF0}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{CB942C59-7EB4-4E47-93C8-EE5D4D8E0787}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{866470DA-FA88-4F5F-8763-1704265C6F90}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,9 +39,20 @@ Global
 		{587F2D0C-4C77-414D-8A75-E485B09796F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{587F2D0C-4C77-414D-8A75-E485B09796F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{587F2D0C-4C77-414D-8A75-E485B09796F7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{82CD9C5E-5F1F-4056-A7EC-CAB24FD21FF0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{82CD9C5E-5F1F-4056-A7EC-CAB24FD21FF0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{82CD9C5E-5F1F-4056-A7EC-CAB24FD21FF0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{82CD9C5E-5F1F-4056-A7EC-CAB24FD21FF0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{AB88DB4C-02A4-4BEB-BAFD-C6FF1D677A40} = {CB942C59-7EB4-4E47-93C8-EE5D4D8E0787}
+		{E7333F07-7E11-48BC-ADE9-B8503ABCEED4} = {CB942C59-7EB4-4E47-93C8-EE5D4D8E0787}
+		{295C08E3-0B92-4819-A20A-6B19FF720166} = {CB942C59-7EB4-4E47-93C8-EE5D4D8E0787}
+		{587F2D0C-4C77-414D-8A75-E485B09796F7} = {CB942C59-7EB4-4E47-93C8-EE5D4D8E0787}
+		{82CD9C5E-5F1F-4056-A7EC-CAB24FD21FF0} = {866470DA-FA88-4F5F-8763-1704265C6F90}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B7D3B8CE-480B-4060-B259-9A916E4F272A}
